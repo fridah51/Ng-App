@@ -7,6 +7,16 @@ import { RegisterComponent } from './register/register.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { MapPageComponent } from './map-page/map-page.component';
+
 
 @NgModule({
   declarations: [
@@ -14,11 +24,19 @@ import { HomepageComponent } from './homepage/homepage.component';
     RegisterComponent,
     SignInComponent,
     ForgotPasswordComponent,
-    HomepageComponent
+    HomepageComponent,
+    WelcomeComponent,
+    MapPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore())
   ],
   providers: [],
   bootstrap: [AppComponent]
