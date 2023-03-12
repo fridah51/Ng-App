@@ -1,1 +1,61 @@
-<p>homepage works!</p>
+<!-- <h1>{{ title }} app is running!</h1>
+
+<ul class="text" *ngFor="let item of items | async">
+  <li>{{item.fname}}</li>
+  <li>{{item.lname}}</li>  
+  <li>{{item.home}}</li>  
+  <li>{{item.work}}</li>  
+  <li></li>      
+</ul>
+    -->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+<nav class="main-menu">
+    <ul>
+        <li><a href="https://jbfarrow.com"><i class="fa fa-home fa-2x"></i></a> </li>
+        <li class="has-subnav"><a href="#"><i class="fa fa-comments fa-2x"></i></a></li>
+        <li><a href="#"><i class="fa fa-cogs fa-2x"></i></a></li>
+        <li><a href="#"><i class="fa fa-map-marker fa-2x"></i></a></li>
+        <li><a href="#"><i class="fa fa-info fa-2x"></i></a></li>
+    </ul>
+
+    <ul class="logout">
+        <li><button (click)="onLogout()"><i class="fa fa-power-off fa-3x"></i></button></li>  
+    </ul>
+</nav>
+
+
+<div class="container text-white">
+
+    <div class="card mask-custom" *ngFor="let item of items | async">
+    <img class="rounded-circle"  width="200px" height="200px"  src={{item.photo}} >
+    <h2>Welcome, {{item.fname}}</h2>
+    </div>
+
+
+    <footer >
+    <i class="fa fa-apple" id="apple"></i>
+    <i class="fa fa-twitter" id="twitter"></i>
+    <i class="fa fa-github-square github" id="github"></i>
+    <i class="fa fa-facebook-square" id="facebook"></i>
+    </footer>
+
+</div>
+
+
+</body>
+
+</html>
+
+
+<router-outlet></router-outlet>
+    

@@ -1,1 +1,99 @@
-<p>sign-in works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <main>
+        <div *ngIf="user$ | async as user else showLogin">
+          <h1 class="title">{{ user.displayName }}</h1>
+        </div>
+        <ng-template #showLogin>
+          <h1 class="title">Fire App</h1>
+          <h2 class="description">Its the fuel to the fire of your dreams </h2>
+          <button class="login-button" (click)="login()">Google Login</button>
+          <button class="login-button" data-bs-toggle="modal" data-bs-target="#myModal">Email</button>
+          <button class="login-button" data-bs-toggle="modal" data-bs-target="#phoneModal">Phone Number</button>
+        </ng-template>
+
+
+                <!--Email Auth Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Fire App</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form (submit)="onSubmit()">
+                      <div class="mb-3">
+                        <label class="form-label">Email:</label>
+                          
+                        <input class="form-control" type="email" [(ngModel)]="email" name="email" required>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Password:</label>
+                          
+                        <input class="form-control" type="password" [(ngModel)]="password" name="password" required>
+                      </div>
+                        <button class="btn btn-outline-success" type="submit">Sign In</button>
+                    </form>
+            
+                </div>
+                <div class="modal-footer">
+                  <a  href="#">Forgot Password?</a>
+                  <br>
+                  <p></p><p></p><p></p><p></p><p></p><p></p>
+                  <p>Don't have an account yet? Sign up <a href="/sign-up">here</a></p> 
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <!-- Phone Number  Auth Modal -->
+        <div class="modal fade" id="phoneModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Fire App</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <h5 class="mb-3">Sign in with your phone number below</h5>
+
+                <form (submit)="onSignInSubmit($event)">
+                  <div class="mb-3">
+                    <label for="phoneNumberInput" class="form-label">Phone Number : </label>
+                    <input type="tel" class="form-control" id="phoneNumberInput" name="phoneNumber" [(ngModel)]="phoneNumber" placeholder="eg. +2547********" [maxLength]="13" minlength="12" required>
+                  </div>
+                  <button type="submit" id="send-code" class="btn btn-outline-success">Send Code</button>
+
+                </form>
+
+                <div class="inputs mt-3">
+                  <h6>Enter Code : </h6>
+                  <input class="verif" type="text" name="code" [(ngModel)]="code" maxLength="6" required>
+                </div>
+                <button (click)="verifyCode()" class="verif-btn" type="submit">Verify code</button>
+
+          
+              </div>
+              <div class="modal-footer">
+               
+              </div>
+          </div>
+          </div>
+      </div>
+  
+
+    </main>
+</body>
+</html>
+
+
+<router-outlet></router-outlet>

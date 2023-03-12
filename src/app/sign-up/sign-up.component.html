@@ -1,0 +1,47 @@
+<body>
+	<div class="section">
+		<div class="container">
+			<div class="row full-height justify-content-center">
+				<div class="col-12 text-center align-self-center py-5">
+					<div class="section pb-5 pt-5 pt-sm-2 text-center">
+						
+						<div class="card-3d-wrap mx-auto">
+							<div class="card-3d-wrapper">
+								<div class="card-front">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<h4 class="mb-4 pb-3">Fire App</h4>
+                        <form (submit)="onSubmit()">
+                          <div class="form-group mb-3">
+                            <label class="form-label">Email :</label>
+                            <input class="form-control" type="email" [(ngModel)]="email" name="email" required>
+                          </div>
+                        
+                          <div class="form-group mb-3">
+                            <label class="form-label">Password :</label>
+                            <input class="form-control" type="password" [(ngModel)]="password" name="password" id="p" required>
+                          </div>
+
+                          <div class="form-group mb-3">
+                            <label class="form-label">Confirm Password :</label>
+                            <input class="form-control" type="password"  name="cpassword" id="cp" required>
+                          </div>
+
+                          <button class="btn btn-outline-light mt-4" type="submit">Sign Up</button>
+                        </form>
+                        <p class="mb-0 mt-4 text-center">Already have an account? <a href="/sign-in" class="link">Sign In</a></p>
+				      				
+			      				</div>
+                  </div>
+			      		</div>
+			      	</div>
+		      	</div>
+	      	</div>
+        </div>
+	    </div>
+    </div>
+	</div>
+
+</body>
+
+<router-outlet></router-outlet>
