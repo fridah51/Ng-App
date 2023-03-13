@@ -1,8 +1,7 @@
-import { compileDeclareClassMetadata } from '@angular/compiler';
 import { Component, inject, NgZone } from '@angular/core';
-import { Auth, authState, getAdditionalUserInfo, getRedirectResult, GoogleAuthProvider, signInWithRedirect, UserCredential } from '@angular/fire/auth';
+import { Auth,User ,authState, getAdditionalUserInfo, getRedirectResult, GoogleAuthProvider, signInWithRedirect, UserCredential } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Firestore } from '@angular/fire/firestore';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfirmationResult, getAuth, RecaptchaVerifier, signInWithPhoneNumber } from 'firebase/auth';
@@ -26,6 +25,7 @@ export class SignInComponent {
 
   verifier :any;
 
+
 // Sign-In With Google
 
   login() {
@@ -39,13 +39,23 @@ export class SignInComponent {
       if (getAdditionalUserInfo(result as UserCredential)?.isNewUser) {
         this.router.navigate([`register/${result.user.uid}`])
       }
+      
+      // Update User info from the google account to firestore
+      const userRef = doc(this.firestore, `users/${result.user.uid}`)
+      setDoc(userRef, 
+        {
+        fname: result.user.displayName!,
+        photo: result.user.photoURL!,
+        }, { merge: true });
       this.router.navigate([`home/${result.user.uid}`])
+
     });
 
     // phone : reCaptcha initialized once
     this.verifier = new RecaptchaVerifier('send-code', { 'size': 'invisible'}, this.auth);
 
   }
+
 
 
 // Sign-In with Email/Password
@@ -76,18 +86,16 @@ export class SignInComponent {
   phoneNumber: string = '';
   code : string = '';
 
-
-  onSignInSubmit(event:any) {
-    event.preventDefault();
+  onSignInSubmit() {
+    // event.preventDefault();
     const verifier = this.verifier
     const confirm = this.afAuth.signInWithPhoneNumber(this.phoneNumber, verifier )
     
     return confirm
   }
 
-
   verifyCode(){
-    this.onSignInSubmit(event).then((confirmationResult) => {
+    this.onSignInSubmit().then((confirmationResult) => {
       // SMS sent. Prompt user to type the code from the message, then sign the
       // user in with confirmationResult.confirm(code).
       confirmationResult.confirm(this.code)
@@ -95,7 +103,7 @@ export class SignInComponent {
         // User signed in successfully.
         const user = result.user;
         if (user){
-          this.router.navigate([`home/${user.uid}`])
+          this.router.navigate([`register/${user.uid}`])
         }
       })
       .catch((error) => {
@@ -112,7 +120,6 @@ export class SignInComponent {
       console.log(errorMessage)
     });
        
-   
   }
 
 

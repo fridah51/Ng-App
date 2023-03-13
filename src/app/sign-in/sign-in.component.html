@@ -66,7 +66,7 @@
               <div class="modal-body">
                 <h5 class="mb-3">Sign in with your phone number below</h5>
 
-                <form (submit)="onSignInSubmit($event)">
+                <form (submit)="onSignInSubmit()">
                   <div class="mb-3">
                     <label for="phoneNumberInput" class="form-label">Phone Number : </label>
                     <input type="tel" class="form-control" id="phoneNumberInput" name="phoneNumber" [(ngModel)]="phoneNumber" placeholder="eg. +2547********" [maxLength]="13" minlength="12" required>
