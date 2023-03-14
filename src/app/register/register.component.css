@@ -1,5 +1,5 @@
 body{
-    background: url('/assets/images/moon.jpg');
+    background: url('/assets/images/yellow-bg.jpg');
     background-size: cover;
     padding: 2%;
     height: 100vh;
@@ -7,6 +7,6 @@ body{
 
 .form-bgd{
     width: 450px;
-    background-color: rgb(2, 25, 46);
+    background-color: rgb(255, 204, 40);
     padding: 2%;
 }
