@@ -1,0 +1,12 @@
+body{
+    background: url('/assets/images/moon.jpg');
+    background-size: cover;
+    padding: 2%;
+    height: 100vh;
+}
+
+.form-bgd{
+    width: 450px;
+    background-color: rgb(2, 25, 46);
+    padding: 2%;
+}

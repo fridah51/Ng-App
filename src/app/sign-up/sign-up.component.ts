@@ -27,7 +27,7 @@ export class SignUpComponent {
         // Signed in 
         const user = userCredential.user;
         if(user){
-          this.router.navigate([`home/${user.uid}`])
+          this.router.navigate([`register/${user.uid}`])
         }
       })
       .catch((error) => {

@@ -1,14 +1,3 @@
-<!-- <h1>{{ title }} app is running!</h1>
-
-<ul class="text" *ngFor="let item of items | async">
-  <li>{{item.fname}}</li>
-  <li>{{item.lname}}</li>  
-  <li>{{item.home}}</li>  
-  <li>{{item.work}}</li>  
-  <li></li>      
-</ul>
-    -->
-
 <html lang="en">
 
 <head>
@@ -19,38 +8,44 @@
 
 <body>
 
-<nav class="main-menu">
-    <ul>
-        <li><a href="https://jbfarrow.com"><i class="fa fa-home fa-2x"></i></a> </li>
-        <li class="has-subnav"><a href="#"><i class="fa fa-comments fa-2x"></i></a></li>
-        <li><a href="#"><i class="fa fa-cogs fa-2x"></i></a></li>
-        <li><a href="#"><i class="fa fa-map-marker fa-2x"></i></a></li>
-        <li><a href="#"><i class="fa fa-info fa-2x"></i></a></li>
-    </ul>
-
-    <ul class="logout">
-        <li><button (click)="onLogout()"><i class="fa fa-power-off fa-3x"></i></button></li>  
-    </ul>
-</nav>
-
-
-<div class="container text-white">
-
-    <div class="card mask-custom" *ngFor="let item of items | async">
-    <img class="rounded-circle"  width="200px" height="200px"  src={{item.photo}} >
-    <h2>Welcome, {{item.fname}}</h2>
+<div class="row">
+    <div class="col-1">
+        <nav class="main-menu">
+            <ul>
+                <li><a href="https://jbfarrow.com"><i class="fa fa-home fa-2x"></i></a> </li>
+                <li class="has-subnav"><a href="#"><i class="fa fa-comments fa-2x"></i></a></li>
+                <li><a href="#"><i class="fa fa-cogs fa-2x"></i></a></li>
+                <li><a href="#"><i class="fa fa-map-marker fa-2x"></i></a></li>
+                <li><a href="#"><i class="fa fa-info fa-2x"></i></a></li>
+            </ul>
+            <ul class="logout">
+                <li><a href="" (click)="onLogout()"><i class="fa fa-power-off fa-3x"></i></a></li>  
+            </ul>
+        </nav>
     </div>
+    <div class="col-10">
+        <div class="container-fluid text-white big-cont">
+            <h4>Complete your Profile now for the full experience . <a href="/register/{{uid}}">Register</a> ! </h4>
 
+            <div class="card mask-custom mb-3" *ngIf="items$ | async as items" >
+                <img class="rounded-circle"  width="100px" height="100px"  src={{data.photo}} >
+                <h4>Welcome, {{data.fname}} {{data.lname}}</h4>
+                
+            </div>
+            <div class="card mask-custom mb-3">
 
-    <footer >
-    <i class="fa fa-apple" id="apple"></i>
-    <i class="fa fa-twitter" id="twitter"></i>
-    <i class="fa fa-github-square github" id="github"></i>
-    <i class="fa fa-facebook-square" id="facebook"></i>
-    </footer>
+            </div>
 
+            <footer>
+                <i class="fa fa-apple" id="apple"></i>
+                <i class="fa fa-twitter" id="twitter"></i>
+                <i class="fa fa-github-square github" id="github"></i>
+                <i class="fa fa-facebook-square" id="facebook"></i>
+            </footer>
+
+        </div>
+    </div>
 </div>
-
 
 </body>
 
