@@ -76,6 +76,7 @@ export class SignInComponent {
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        window.alert(errorMessage);
         console.log(errorMessage)
       });
   }

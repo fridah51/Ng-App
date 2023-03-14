@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HomepageComponent } from './homepage/homepage.component';
 import { MapPageComponent } from './map-page/map-page.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './services/auth.guard';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -24,17 +25,20 @@ const routes: Routes = [
   { 
     path: 'register/:uid', 
     component: RegisterComponent, 
-    pathMatch: 'full' 
+    pathMatch: 'full' ,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'home/:uid', 
     component: HomepageComponent, 
-    pathMatch: 'full' 
+    pathMatch: 'full' ,
+    canActivate: [AuthGuard]
   },
   { 
-    path: 'hail/:uid', 
+    path: 'map/:uid', 
     component: MapPageComponent, 
-    pathMatch: 'full' 
+    pathMatch: 'full' ,
+    canActivate: [AuthGuard]
   },
   { 
     path: 'forgot-password', 
